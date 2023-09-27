@@ -4,6 +4,7 @@ import com.cheweek.spring_backend_cheweek_core.utility.Converter;
 import com.cheweek.spring_backend_cheweek_core.utility.QLogger;
 import com.cheweek.spring_backend_cheweek_core.utility.SessionManager;
 import com.cheweek.spring_backend_cheweek_core.utility.UserInfo;
+import com.cheweek.spring_backend_cheweek_core.utility.core.RedisService;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.*;
@@ -28,7 +29,8 @@ import java.io.*;
 public class RequestCachingFilter extends OncePerRequestFilter {
 
     private final SessionManager manager;
-    final RedisTemplate<String, String> redis;
+    private final RedisService redisService;
+
 
     final QLogger logger = QLogger.getLogger(RequestCachingFilter.class);
 
@@ -75,14 +77,15 @@ public class RequestCachingFilter extends OncePerRequestFilter {
         return true;
     }
     private UserInfo getUserInfo(String token) {
-        Converter<String, UserInfo> converter = new Converter<>();
-        HashOperations<String, String, String> userInfoRedis = redis.opsForHash();
+//        Converter<String, UserInfo> converter = new Converter<>();
+//        HashOperations<String, String, String> userInfoRedis = redis.opsForHash();
+
         UserInfo userInfo = new UserInfo();
         if (token.length() == 0) {
             return null;
         }
-        String info = userInfoRedis.get("spring_dev_token", token);
-        userInfo = converter.convertMap(info, userInfo);
+//        String info = userInfoRedis.get("spring_dev_token", token);
+        userInfo = redisService.getRedis("chw.hashKeyToken",token);
         return userInfo;
 
     }
