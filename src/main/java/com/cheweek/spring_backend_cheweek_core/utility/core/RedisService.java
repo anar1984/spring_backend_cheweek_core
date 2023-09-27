@@ -1,6 +1,8 @@
 package com.cheweek.spring_backend_cheweek_core.utility.core;
 
+import com.cheweek.spring_backend_cheweek_core.filter.RequestCachingFilter;
 import com.cheweek.spring_backend_cheweek_core.utility.Converter;
+import com.cheweek.spring_backend_cheweek_core.utility.QLogger;
 import com.cheweek.spring_backend_cheweek_core.utility.SessionManager;
 import com.cheweek.spring_backend_cheweek_core.utility.UserInfo;
 import org.json.JSONObject;
@@ -14,6 +16,7 @@ public class RedisService {
     private final HashOperations<String, String, String> hashOperations;
     private final SessionManager sessionManager;
     private final PropertyService propertyService;
+    final QLogger logger = QLogger.getLogger(RedisService.class);
 
     public RedisService(RedisTemplate<String, String> redisTemplate, SessionManager sessionManager, PropertyService propertyService) {
         this.redisTemplate = redisTemplate;
@@ -34,12 +37,15 @@ public class RedisService {
 
     }
     public UserInfo getRedis(String hashKey,String key){
+        logger.info("hashKey : "+hashKey);
         if(key==null || key.trim().length()==0){
             return null ;
         }
         UserInfo info = new UserInfo();
 //        String obj  = getFromHash("spring_dev_token",key);
-        String obj  = getFromHash(hashKey,key);
+        String map = propertyService.getProperty("chw.hashKeyToken");
+        logger.info("map : "+map);
+        String obj  = getFromHash(map,key);
 //        Gson  gson = new Gson();
 //        info = gson.fromJson(gson.toJson(obj),UserInfo.class);
 
@@ -60,7 +66,9 @@ public class RedisService {
         if(key==null || key.trim().length()==0){
             return;
         }
-        UserInfo info =getRedis(propertyService.getProperty("chw.hashKeyToken"),key);
+        String map = propertyService.getProperty("chw.hashKeyToken");
+        logger.info("hashKeysajgkaj : "+map);
+        UserInfo info =getRedis(map,key);
         sessionManager.setCurrentUserId(info.getCurrentUserId());
         sessionManager.setToken(key);
         sessionManager.setCurrentUserName(info.getCurrentUserName());

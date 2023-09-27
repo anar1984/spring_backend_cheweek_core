@@ -21,13 +21,14 @@ public class CorsConfig implements Filter {
 
 
         HttpServletRequest request = (HttpServletRequest)req;
+        logger.info("cors1");
         String dev = request.getHeader("dev") == null ? "" : request.getHeader("dev");
         if(dev.trim().length()!=0){
             chain.doFilter(req, res);
             return;
         }
         final HttpServletResponse response = (HttpServletResponse) res;
-
+        logger.info("cors2");
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, enctype");
@@ -37,6 +38,8 @@ public class CorsConfig implements Filter {
         } else {
             chain.doFilter(req, res);
         }
+        logger.info("cors3");
+
 
 
     }

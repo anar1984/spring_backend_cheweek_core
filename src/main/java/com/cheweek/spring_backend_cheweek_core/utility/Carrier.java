@@ -17,13 +17,13 @@ import java.util.Map;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
-public class Carrier  implements Serializable {
+public class Carrier implements Serializable {
     private static final long serialVersionUID = 1L;
     String apiId;
     Map<String, String> kv = new HashMap<>();
     Map<String, List<Object>> list =new HashMap<>();
 
-    public Object getFields(Object dto) {
+    public CoreDto getFields(CoreDto dto) {
 
 //         ObjectMapper mapper = new ObjectMapper();
 //        dto = mapper.convertValue(this.fields,  dto.getClass());
@@ -32,6 +32,13 @@ public class Carrier  implements Serializable {
     public void set(String key,String value){
         this.kv.put(key,value);
     }
+
+    public void setObjectForKv(CoreDto dto){
+        Converter<String, CoreDto> converter = new Converter<>();
+        this.kv = converter.convertDto(dto);
+
+    }
+
 
     public String  get(String key){
 
@@ -45,7 +52,7 @@ public class Carrier  implements Serializable {
         return list;
     }
     public void setList(String key,Object list){
-        Converter<String, Object> converter = new Converter<>();
+        Converter<String, CoreDto> converter = new Converter<>();
         this.list.put(key,converter.convertObject(list));
     }
     public List<Map> getList(String key){
@@ -57,7 +64,7 @@ public class Carrier  implements Serializable {
 //        this.list.put(key,list);
 //    }
 
-    private Object convertDto (Map<String,String>map,Object dto){
+    private CoreDto convertDto (Map<String,String>map,CoreDto dto){
             ModelMapper modelMapper = new ModelMapper();
             modelMapper.map(map, dto);
         return  dto  ;

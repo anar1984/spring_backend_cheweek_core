@@ -31,8 +31,22 @@ custom:
     host: ${CHW_REDIS_URL}
     port: ${CHW_REDIS_PORT}
     password: ${CHW_REDIS_AUTH}
+#chw:
+#  hashKeyToken: spring_dev_token
 chw:
   hashKeyToken: spring_dev_token
+
+
+service :
+  erp:
+    baseurl: http://localhost:8082
+    contextPath: /spdev
+  core:
+    baseurl: http://localhost:8083
+    contextPath: /spdev
+  gateway:
+    baseurl: http://localhost:8081
+    contextPath: /spdev
 
 
 

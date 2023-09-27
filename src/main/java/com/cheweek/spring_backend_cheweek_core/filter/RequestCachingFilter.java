@@ -43,6 +43,7 @@ public class RequestCachingFilter extends OncePerRequestFilter {
         String token= request.getHeader("Authorization");
 
         String land = request.getHeader("land");
+        logger.info("token : "+token);
         manager.setLang(land);
         manager.setToken(token);
         if(token== null || !token.startsWith("Bearer ")){
@@ -85,7 +86,10 @@ public class RequestCachingFilter extends OncePerRequestFilter {
             return null;
         }
 //        String info = userInfoRedis.get("spring_dev_token", token);
+
         userInfo = redisService.getRedis("chw.hashKeyToken",token);
+
+        logger.info("userInfo : "+userInfo.toString() );
         return userInfo;
 
     }
