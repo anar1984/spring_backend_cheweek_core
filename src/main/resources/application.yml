@@ -1,0 +1,38 @@
+
+server:
+  port: 8082
+  servlet:
+    context-path:/spdev
+spring:
+  profiles:
+    active:  ${CHW_SERVER_TYPE}
+  datasource:
+        url: ${SPRING_CORE_URL}
+        driverClassName: ${SPRING_CORE_DRIVER}
+        username: ${SPRING_CORE_USERNAME}
+        password: ${SPRING_CORE_PASSWORD}
+        hikari:
+            maximum-pool-size: ${SPRING_CORE_MAX_IDLE}
+            minimum-idle: 1
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        dialect:
+          storage_engine: innodb
+    openInView: false
+    show_sql: true
+    generate-ddl: false
+    hibernate.ddl-auto: update
+
+
+custom:
+  redis:
+    host: ${CHW_REDIS_URL}
+    port: ${CHW_REDIS_PORT}
+    password: ${CHW_REDIS_AUTH}
+
+
+
+
+

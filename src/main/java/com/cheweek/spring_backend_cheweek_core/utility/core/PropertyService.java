@@ -1,4 +1,4 @@
-package com.cheweek.spring_backend_cheweek_core.service.core;
+package com.cheweek.spring_backend_cheweek_core.utility.core;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;

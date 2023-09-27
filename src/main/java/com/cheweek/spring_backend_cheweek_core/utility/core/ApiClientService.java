@@ -1,9 +1,9 @@
-package com.cheweek.spring_backend_cheweek_core.service.client;
+package com.cheweek.spring_backend_cheweek_core.utility.core;
 
 
 
 import com.cheweek.spring_backend_cheweek_core.exception.ClientServiceException;
-import com.cheweek.spring_backend_cheweek_core.service.core.PropertyService;
+import com.cheweek.spring_backend_cheweek_core.utility.core.PropertyService;
 import com.cheweek.spring_backend_cheweek_core.utility.Carrier;
 import com.cheweek.spring_backend_cheweek_core.utility.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
