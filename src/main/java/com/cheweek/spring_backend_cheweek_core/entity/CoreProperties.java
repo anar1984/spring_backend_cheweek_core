@@ -1,11 +1,10 @@
 package com.cheweek.spring_backend_cheweek_core.entity;
 
 import com.cheweek.spring_backend_cheweek_core.utility.coreentity.CoreEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Fetch;
 
 @AllArgsConstructor
 @NoArgsConstructor

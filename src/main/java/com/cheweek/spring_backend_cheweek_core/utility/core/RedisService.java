@@ -1,6 +1,5 @@
 package com.cheweek.spring_backend_cheweek_core.utility.core;
 
-import com.cheweek.spring_backend_cheweek_core.filter.RequestCachingFilter;
 import com.cheweek.spring_backend_cheweek_core.utility.Converter;
 import com.cheweek.spring_backend_cheweek_core.utility.QLogger;
 import com.cheweek.spring_backend_cheweek_core.utility.SessionManager;
@@ -32,23 +31,16 @@ public class RedisService {
         }
         info.setKey(key);
         JSONObject jsonObject = new JSONObject(info);
-//        addToHash("spring_dev_token",key,jsonObject.toString());
         addToHash(hashKey,key,jsonObject.toString());
 
     }
     public UserInfo getRedis(String hashKey,String key){
-        logger.info("hashKey : "+hashKey);
         if(key==null || key.trim().length()==0){
             return null ;
         }
         UserInfo info = new UserInfo();
-//        String obj  = getFromHash("spring_dev_token",key);
-        String map = propertyService.getProperty("chw.hashKeyToken");
-        logger.info("map : "+map);
+        String map = propertyService.getProperty(hashKey);
         String obj  = getFromHash(map,key);
-//        Gson  gson = new Gson();
-//        info = gson.fromJson(gson.toJson(obj),UserInfo.class);
-
         Converter<String, UserInfo> converter = new Converter<>();
         info = converter.convertMap(obj,info);
 
@@ -67,7 +59,6 @@ public class RedisService {
             return;
         }
         String map = propertyService.getProperty("chw.hashKeyToken");
-        logger.info("hashKeysajgkaj : "+map);
         UserInfo info =getRedis(map,key);
         sessionManager.setCurrentUserId(info.getCurrentUserId());
         sessionManager.setToken(key);

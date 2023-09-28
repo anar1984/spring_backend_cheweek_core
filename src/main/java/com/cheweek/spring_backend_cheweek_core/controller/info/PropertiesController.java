@@ -1,5 +1,6 @@
 package com.cheweek.spring_backend_cheweek_core.controller.info;
 
+import com.cheweek.spring_backend_cheweek_core.service.impl.TestDtoGetService;
 import com.cheweek.spring_backend_cheweek_core.service.info.PropertiesGetService;
 import com.cheweek.spring_backend_cheweek_core.utility.Carrier;
 import lombok.AccessLevel;
@@ -17,8 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class PropertiesController {
 
    final PropertiesGetService service;
+   final TestDtoGetService testDtoGetService;
     @PostMapping("/get")
     public Carrier getProduct(@RequestBody Carrier carrier){
         return service.run(carrier);
+    }
+
+    @PostMapping("/get_dto")
+    public Carrier getProductByTest(@RequestBody Carrier carrier){
+        return testDtoGetService.run(carrier);
     }
 }

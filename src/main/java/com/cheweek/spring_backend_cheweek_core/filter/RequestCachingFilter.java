@@ -1,25 +1,21 @@
 package com.cheweek.spring_backend_cheweek_core.filter;
 
-import com.cheweek.spring_backend_cheweek_core.utility.Converter;
 import com.cheweek.spring_backend_cheweek_core.utility.QLogger;
 import com.cheweek.spring_backend_cheweek_core.utility.SessionManager;
 import com.cheweek.spring_backend_cheweek_core.utility.UserInfo;
 import com.cheweek.spring_backend_cheweek_core.utility.core.RedisService;
-import jakarta.servlet.*;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.http.*;
-
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-
 import org.springframework.web.filter.OncePerRequestFilter;
 
-
-import java.io.*;
+import java.io.IOException;
 
 
 @Order(value = Ordered.LOWEST_PRECEDENCE)
@@ -39,11 +35,10 @@ public class RequestCachingFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
 
-        logger.info("start filter");
+
         String token= request.getHeader("Authorization");
 
         String land = request.getHeader("land");
-        logger.info("token : "+token);
         manager.setLang(land);
         manager.setToken(token);
         if(token== null || !token.startsWith("Bearer ")){
@@ -78,18 +73,11 @@ public class RequestCachingFilter extends OncePerRequestFilter {
         return true;
     }
     private UserInfo getUserInfo(String token) {
-//        Converter<String, UserInfo> converter = new Converter<>();
-//        HashOperations<String, String, String> userInfoRedis = redis.opsForHash();
-
         UserInfo userInfo = new UserInfo();
         if (token.length() == 0) {
             return null;
         }
-//        String info = userInfoRedis.get("spring_dev_token", token);
-
         userInfo = redisService.getRedis("chw.hashKeyToken",token);
-
-        logger.info("userInfo : "+userInfo.toString() );
         return userInfo;
 
     }
