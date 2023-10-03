@@ -8,7 +8,9 @@ import com.cheweek.spring_backend_cheweek_core.repository.CorePropertiesReposito
 import com.cheweek.spring_backend_cheweek_core.service.ApiService;
 import com.cheweek.spring_backend_cheweek_core.utility.Carrier;
 import com.cheweek.spring_backend_cheweek_core.utility.CarrierValidation;
+import com.cheweek.spring_backend_cheweek_core.utility.coreentity.CorePagination;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,21 +23,15 @@ public class TestDtoGetService implements ApiService {
     private final CorePropertiesRepository properties;
     private final CarrierValidation validation;
     private final TestDtoMapper mapper;
+    private final CorePagination pagination;
 
     @Override
     public Carrier run(Carrier carrier) {
         validation.addValidation(carrier,"propertyCode");
         validation.hasError();
-        List<TestDto>  list = new ArrayList<>();
-//        list = properties.getAllByPropertyCodeAndStatusAndIsActive(carrier.get("propertyCode"),"A","A");
-//        List<TestMyProjection> cp = properties.getAllByPropertyCodeAndStatusAndIsActive(carrier.get("propertyCode"),"A","A");
-//        if (cp != null) {
-//
-//             list =  cp.stream().map(mapper::testMyProjectionToTestDto).collect(Collectors.toList());
-//
-//
-//        }
-        carrier.setList("propertyKey",list );
+        Page<CoreProperties> list = properties.findAllByPropertyCodeAndStatusAndIsActive(carrier.get("propertyCode"),"A","A",pagination.getPagination(carrier.get("page"),carrier.get("count")));
+
+        carrier.setList("propertyKey",list.stream().toList());
         return carrier;
     }
 

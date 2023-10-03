@@ -24,11 +24,11 @@ public class PropertiesGetService implements ApiService {
     public Carrier run(Carrier carrier) {
         validation.addValidation(carrier,"propertyCode");
         validation.hasError();
-        carrier.setList("properties",getList(carrier.get("propertyCode"),carrier.get("page"),carrier.get("count")));
+        carrier.setList("properties",getList(carrier.get("propertyCode"),carrier.get("page"),carrier.get("page")));
         return carrier;
     }
     private List<CoreProperties> getList(String propertyCode,String page,String count ){
-        return properties.findAllByPropertyCodeAndStatusAndIsActive(propertyCode,"A","A",pagination.getPagination(page,count));
+        return properties.findAllByPropertyCodeAndStatusAndIsActive(propertyCode,"A","A",pagination.getPagination(page,count)).stream().toList();
 
     }
 }
