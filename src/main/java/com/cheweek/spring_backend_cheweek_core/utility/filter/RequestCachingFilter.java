@@ -3,7 +3,7 @@ package com.cheweek.spring_backend_cheweek_core.utility.filter;
 import com.cheweek.spring_backend_cheweek_core.utility.QLogger;
 import com.cheweek.spring_backend_cheweek_core.utility.SessionManager;
 import com.cheweek.spring_backend_cheweek_core.utility.UserInfo;
-import com.cheweek.spring_backend_cheweek_core.utility.core.RedisService;
+import com.cheweek.spring_backend_cheweek_core.utility.core.RedisServiceUser;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebFilter;
@@ -25,7 +25,7 @@ import java.io.IOException;
 public class RequestCachingFilter extends OncePerRequestFilter {
 
     private final SessionManager manager;
-    private final RedisService redisService;
+    private final RedisServiceUser redisServiceUser;
 
 
     final QLogger logger = QLogger.getLogger(RequestCachingFilter.class);
@@ -77,7 +77,7 @@ public class RequestCachingFilter extends OncePerRequestFilter {
         if (token.length() == 0) {
             return null;
         }
-        userInfo = redisService.getRedis("chw.hashKeyToken",token);
+        userInfo = redisServiceUser.getRedis("chw.hashKeyToken",token);
         return userInfo;
 
     }

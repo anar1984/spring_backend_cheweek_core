@@ -10,14 +10,14 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RedisService {
+public class RedisServiceUser {
     private final RedisTemplate<String, String> redisTemplate;
     private final HashOperations<String, String, String> hashOperations;
     private final SessionManager sessionManager;
     private final PropertyService propertyService;
-    final QLogger logger = QLogger.getLogger(RedisService.class);
+    final QLogger logger = QLogger.getLogger(RedisServiceUser.class);
 
-    public RedisService(RedisTemplate<String, String> redisTemplate, SessionManager sessionManager, PropertyService propertyService) {
+    public RedisServiceUser(RedisTemplate<String, String> redisTemplate, SessionManager sessionManager, PropertyService propertyService) {
         this.redisTemplate = redisTemplate;
         this.hashOperations = redisTemplate.opsForHash();
         this.sessionManager = sessionManager;
