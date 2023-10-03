@@ -2,7 +2,7 @@
 server:
   port: 8083
   servlet:
-    context-path: /spdev
+    context-path: /core
 spring:
   profiles:
     active:  ${CHW_SERVER_TYPE}
@@ -39,14 +39,14 @@ chw:
 
 service :
   erp:
-    baseurl: http://localhost:8082
-    contextPath: /spdev
+    baseurl: ${SPRING_ERP_API}
+    contextPath: ${SPRING_ERP_CONTEXT}
   core:
-    baseurl: http://localhost:8083
-    contextPath: /spdev
+    baseurl: ${SPRING_CORE_API}
+    contextPath: ${SPRING_CORE_CONTEXT}
   gateway:
-    baseurl: http://localhost:8081
-    contextPath: /spdev
+    baseurl: ${SPRING_GATEWAY_API}
+    contextPath: ${SPRING_GATEWAY_CONTEXT}
 
 
 

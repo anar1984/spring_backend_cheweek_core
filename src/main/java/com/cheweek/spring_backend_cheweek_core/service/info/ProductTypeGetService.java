@@ -5,7 +5,12 @@ import com.cheweek.spring_backend_cheweek_core.repository.ProductTypeRepository;
 import com.cheweek.spring_backend_cheweek_core.service.ApiService;
 import com.cheweek.spring_backend_cheweek_core.utility.Carrier;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 

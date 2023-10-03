@@ -1,5 +1,6 @@
 package com.cheweek.spring_backend_cheweek_core.dto;
 
+import com.cheweek.spring_backend_cheweek_core.utility.CoreDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
 import lombok.*;
@@ -12,11 +13,8 @@ import org.hibernate.annotations.Fetch;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
-public class TestDto {
-    @Column(name = "property_value")
+public class TestDto implements CoreDto {
     String propertyKey ;
-    @Column(name = "property_value")
     String propertyValue ;
-    @Column(name = "order_no")
     String orderNo ;
 }

@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PROTECTED)
 @ToString
 @MappedSuperclass
-public class ErpEntity extends CoreEntity{
+public class FlowEntity extends CoreEntity{
     @Column(name = "operation_date",nullable = false)
     String operationDate;
     @Column(name = "operation_time",nullable = false)

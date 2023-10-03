@@ -1,6 +1,7 @@
 package com.cheweek.spring_backend_cheweek_core.service.impl;
 
 import com.cheweek.spring_backend_cheweek_core.dto.TestDto;
+import com.cheweek.spring_backend_cheweek_core.entity.CoreProperties;
 import com.cheweek.spring_backend_cheweek_core.mapper.TestDtoMapper;
 import com.cheweek.spring_backend_cheweek_core.projection.TestMyProjection;
 import com.cheweek.spring_backend_cheweek_core.repository.CorePropertiesRepository;
@@ -26,13 +27,14 @@ public class TestDtoGetService implements ApiService {
         validation.addValidation(carrier,"propertyCode");
         validation.hasError();
         List<TestDto>  list = new ArrayList<>();
-        List<TestMyProjection> cp = properties.getAllByPropertyCodeAndStatusAndIsActive(carrier.get("propertyCode"),"A","A");
-        if (cp != null) {
-
-             list =  cp.stream().map(mapper::testMyProjectionToTestDto).collect(Collectors.toList());
-
-
-        }
+        list = properties.getAllByPropertyCodeAndStatusAndIsActive(carrier.get("propertyCode"),"A","A");
+//        List<TestMyProjection> cp = properties.getAllByPropertyCodeAndStatusAndIsActive(carrier.get("propertyCode"),"A","A");
+//        if (cp != null) {
+//
+//             list =  cp.stream().map(mapper::testMyProjectionToTestDto).collect(Collectors.toList());
+//
+//
+//        }
         carrier.setList("propertyKey",list );
         return carrier;
     }

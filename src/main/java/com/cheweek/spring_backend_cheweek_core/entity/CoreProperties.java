@@ -1,5 +1,6 @@
 package com.cheweek.spring_backend_cheweek_core.entity;
 
+import com.cheweek.spring_backend_cheweek_core.utility.CoreDto;
 import com.cheweek.spring_backend_cheweek_core.utility.coreentity.CoreEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +15,7 @@ import org.hibernate.annotations.Fetch;
 @ToString
 @Entity
 @Table(name = "properties")
-public class CoreProperties extends CoreEntity {
+public class CoreProperties extends CoreEntity implements CoreDto {
     @Column(name = "is_active")
     String isActive ;
     @Column(name = "property_code")
