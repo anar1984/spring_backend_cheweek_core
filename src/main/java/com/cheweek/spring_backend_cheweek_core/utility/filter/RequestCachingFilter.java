@@ -1,4 +1,4 @@
-package com.cheweek.spring_backend_cheweek_core.filter;
+package com.cheweek.spring_backend_cheweek_core.utility.filter;
 
 import com.cheweek.spring_backend_cheweek_core.utility.QLogger;
 import com.cheweek.spring_backend_cheweek_core.utility.SessionManager;
