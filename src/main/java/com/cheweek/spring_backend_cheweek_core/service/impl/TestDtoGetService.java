@@ -27,7 +27,7 @@ public class TestDtoGetService implements ApiService {
         validation.addValidation(carrier,"propertyCode");
         validation.hasError();
         List<TestDto>  list = new ArrayList<>();
-        list = properties.getAllByPropertyCodeAndStatusAndIsActive(carrier.get("propertyCode"),"A","A");
+//        list = properties.getAllByPropertyCodeAndStatusAndIsActive(carrier.get("propertyCode"),"A","A");
 //        List<TestMyProjection> cp = properties.getAllByPropertyCodeAndStatusAndIsActive(carrier.get("propertyCode"),"A","A");
 //        if (cp != null) {
 //

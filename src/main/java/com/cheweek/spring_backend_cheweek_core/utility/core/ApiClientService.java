@@ -2,10 +2,10 @@ package com.cheweek.spring_backend_cheweek_core.utility.core;
 
 
 
-import com.cheweek.spring_backend_cheweek_core.exception.ClientServiceException;
-import com.cheweek.spring_backend_cheweek_core.utility.Carrier;
+import com.cheweek.spring_backend_cheweek_core.utility.exception.ClientServiceException;
 import com.cheweek.spring_backend_cheweek_core.utility.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -23,21 +23,24 @@ public class ApiClientService {
         this.webClientBuilder = webClientBuilder;
     }
 
-    public Mono<Carrier> sendPostRequest(Carrier carrier, String serviceKey, String endPoint) {
+    public Mono<Object> sendPostRequest(Object carrier, String serviceKey, String endPoint) {
         final String service = "service.";
         final String serviceUriKey = ".baseurl";
         final String contextPathKey = ".contextPath";
         String serviceUli = propertyService.getProperty(service + serviceKey + serviceUriKey);
         String contextPath = propertyService.getProperty(service + serviceKey + contextPathKey);
-        String endPointUri = contextPath + endPoint;
-
+        String endPointUri =  endPoint;
+        String token = "Bearer " + sessionManager.getToken();
         WebClient webClient = webClientBuilder
                 .baseUrl(serviceUli)
-                .defaultHeader("Authorization", sessionManager.getToken())
+                .defaultHeader("Authorization", token)
                 .defaultHeader("Accept", "application/json")
+                .defaultHeader("lang", sessionManager.getLang())
+
                 .build();
         return webClient.post()
                 .uri(endPointUri)
+                .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(carrier)
                 .retrieve()
                 .onRawStatus(status -> status == 400, clientResponse -> {
@@ -59,12 +62,11 @@ public class ApiClientService {
 
                     throw new RuntimeException("500 Internal Server Error \n " + serviceKey + " : " + endPoint);
                 })
-                .bodyToMono(Carrier.class);
+
+                .bodyToMono(Object.class);
 
     }
-    public Carrier callService(Carrier carrier, String serviceKey, String endPoint){
-        return sendPostRequest(carrier,serviceKey,endPoint).block();
-    }
+
 }
 
 

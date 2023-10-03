@@ -1,9 +1,9 @@
-package com.cheweek.spring_backend_cheweek_core.exception;
+package com.cheweek.spring_backend_cheweek_core.utility.exception;
 
 
 
 
-import com.cheweek.spring_backend_cheweek_core.exception.handler.CoreException;
+import com.cheweek.spring_backend_cheweek_core.utility.exception.handler.CoreException;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

@@ -2,7 +2,7 @@ package com.cheweek.spring_backend_cheweek_core.utility.coreentity;
 
 
 
-import com.cheweek.spring_backend_cheweek_core.exception.TableRowLimitException;
+import com.cheweek.spring_backend_cheweek_core.utility.exception.TableRowLimitException;
 import com.cheweek.spring_backend_cheweek_core.utility.Converter;
 import com.cheweek.spring_backend_cheweek_core.utility.QDate;
 import com.cheweek.spring_backend_cheweek_core.utility.QLogger;

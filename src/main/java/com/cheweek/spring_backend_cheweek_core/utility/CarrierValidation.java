@@ -1,7 +1,7 @@
 package com.cheweek.spring_backend_cheweek_core.utility;
 
 
-import com.cheweek.spring_backend_cheweek_core.exception.FieldsNotFoundException;
+import com.cheweek.spring_backend_cheweek_core.utility.exception.FieldsNotFoundException;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.cheweek.spring_backend_cheweek_core.utility;
 
 
-import com.cheweek.spring_backend_cheweek_core.exception.ConverterException;
+import com.cheweek.spring_backend_cheweek_core.utility.exception.ConverterException;
 import com.google.gson.Gson;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

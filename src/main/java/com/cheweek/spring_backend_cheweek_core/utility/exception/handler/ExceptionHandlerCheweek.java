@@ -1,7 +1,7 @@
-package com.cheweek.spring_backend_cheweek_core.exception.handler;
+package com.cheweek.spring_backend_cheweek_core.utility.exception.handler;
 
-import com.cheweek.spring_backend_cheweek_core.exception.ClientServiceException;
 import com.cheweek.spring_backend_cheweek_core.utility.SessionManager;
+import com.cheweek.spring_backend_cheweek_core.utility.exception.ClientServiceException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

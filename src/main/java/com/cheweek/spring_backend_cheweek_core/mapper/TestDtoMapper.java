@@ -7,4 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface TestDtoMapper {
     public TestDto testMyProjectionToTestDto(TestMyProjection testMyProjection);
+
 }

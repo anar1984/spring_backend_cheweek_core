@@ -10,7 +10,7 @@ public class CorePagination {
 
     public Pageable getPagination(String page,String count){
         int pageInt = Integer.parseInt((page==null||page.trim().length()==0)?"0":page);
-        int pageCount = Integer.parseInt((count==null||count.trim().length()==0)?"0":count);
+        int pageCount = Integer.parseInt((count==null||count.trim().length()==0)?"50":count);
         return  PageRequest.of(pageInt,pageCount).withSort(Sort.by("id").descending());
 
 
