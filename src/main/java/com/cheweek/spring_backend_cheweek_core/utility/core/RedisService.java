@@ -29,14 +29,16 @@ public class RedisService {
         if(key==null || key.trim().length()==0){
             return;
         }
+        final String hash= propertyService.getProperty(hashKey);
         JSONObject jsonObject = new JSONObject(info);
-        addToHash(hashKey,key,jsonObject.toString());
+        addToHash(hash,key,jsonObject.toString());
     }
     public Object getRedis(String hashKey,String key){
         if(key==null || key.trim().length()==0){
             return null ;
         }
-        String obj  = getFromHash(hashKey,key);
+        final String hash= propertyService.getProperty(hashKey);
+        String obj  = getFromHash(hash,key);
         ModelMapper mapper = new ModelMapper();
         return mapper.map(obj,Object.class);
     }
