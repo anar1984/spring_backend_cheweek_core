@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 public class CorePagination {
 
     public Pageable getPagination(String page,String count){
-        int pageInt = Integer.parseInt((page==null||page.trim().length()==0)?"0":page);
-        int pageCount = Integer.parseInt((count==null||count.trim().length()==0)?"50":count);
+        int pageInt = Integer.parseInt((page==null|| page.trim().isEmpty())?"0":page);
+        int pageCount = Integer.parseInt((count==null|| count.trim().isEmpty())?"50":count);
         return  PageRequest.of(pageInt,pageCount).withSort(Sort.by("id").descending());
 
 

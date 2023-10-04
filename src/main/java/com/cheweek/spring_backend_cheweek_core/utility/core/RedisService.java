@@ -3,10 +3,12 @@ package com.cheweek.spring_backend_cheweek_core.utility.core;
 import org.json.JSONObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RedisService {
@@ -14,8 +16,8 @@ public class RedisService {
     private final HashOperations<String, String, String> hashOperations;
     private final PropertyService propertyService;
 
-    public RedisService(HashOperations<String, String, String> hashOperations, PropertyService propertyService) {
-        this.hashOperations = hashOperations;
+    public RedisService(RedisTemplate<String, String> redisTemplate, PropertyService propertyService) {
+        this.hashOperations = redisTemplate.opsForHash();
         this.propertyService = propertyService;
     }
     public void addToHash(String hashKey, String field, String value) {
@@ -43,7 +45,7 @@ public class RedisService {
         return mapper.map(obj,Object.class);
     }
 
-    public List<Object>  getValueList(String hashTable,List<String>keyList){
+    public List<Object>  getValueList(String hashTable, Set<String> keyList){
         List<Object> list  = new ArrayList<>();
         for (String key : keyList){
             Object o = new Object();
