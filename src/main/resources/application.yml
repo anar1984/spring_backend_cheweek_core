@@ -22,7 +22,7 @@ spring:
           storage_engine: innodb
     openInView: false
     show_sql: true
-    generate-ddl: false
+    generate-ddl: true
     hibernate.ddl-auto: update
 
 

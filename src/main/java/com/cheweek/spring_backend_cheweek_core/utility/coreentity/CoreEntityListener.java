@@ -36,17 +36,19 @@ public class CoreEntityListener {
     @PrePersist
     private void preInsert(CoreEntity entity){
         checkTableInsert(entity);
-        entity.insertDate  = QDate.getCurrentDate();
+        entity.setInsertDate( QDate.getCurrentDate());
         entity.setStatus("A");
-        entity.createdBy = manager.getCurrentUserId();
+        entity.setCreatedDate(QDate.getCurrentDate());
+        entity.setCreatedTime(QDate.getCurrentTime());
+        entity.setCreatedBy(manager.getCurrentUserId());
     }
 
 
     @PreUpdate
     private void preUpdate(CoreEntity entity){
-        entity.modificationDate = QDate.getCurrentDate();
-        entity.modificationBy = manager.getCurrentUserId();
-        entity.modificationTime  = QDate.getCurrentTime();
+        entity.setModificationDate( QDate.getCurrentDate());
+        entity.setModificationBy(manager.getCurrentUserId());
+        entity.setModificationTime(QDate.getCurrentTime());
 
     }
 

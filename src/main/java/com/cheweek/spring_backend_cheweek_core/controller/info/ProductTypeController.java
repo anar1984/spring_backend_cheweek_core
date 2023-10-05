@@ -1,5 +1,6 @@
 package com.cheweek.spring_backend_cheweek_core.controller.info;
 
+import com.cheweek.spring_backend_cheweek_core.dto.ProductTypeDTO;
 import com.cheweek.spring_backend_cheweek_core.service.info.ProductTypeGetService;
 import com.cheweek.spring_backend_cheweek_core.utility.Carrier;
 import lombok.AccessLevel;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/product-type")
 @RequiredArgsConstructor
@@ -18,7 +21,9 @@ public class ProductTypeController {
     final ProductTypeGetService productTypeGetService;
 
     @PostMapping("/get")
-    public Carrier productTypeGet(@RequestBody Carrier carrier){
-        return productTypeGetService.run(carrier);
+    public List<ProductTypeDTO> productTypeGet(@RequestBody Carrier carrier){
+        return productTypeGetService.get();
     }
+
+
 }

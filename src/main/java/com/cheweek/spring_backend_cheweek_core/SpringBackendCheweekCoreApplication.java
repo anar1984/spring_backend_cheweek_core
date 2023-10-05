@@ -1,5 +1,6 @@
 package com.cheweek.spring_backend_cheweek_core;
 
+import org.mapstruct.MapperConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

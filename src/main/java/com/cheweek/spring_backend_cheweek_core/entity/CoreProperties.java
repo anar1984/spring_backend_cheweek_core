@@ -1,11 +1,12 @@
 package com.cheweek.spring_backend_cheweek_core.entity;
 
-import com.cheweek.spring_backend_cheweek_core.utility.CoreDto;
 import com.cheweek.spring_backend_cheweek_core.utility.coreentity.CoreEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.Fetch;
+import lombok.experimental.SuperBuilder;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,9 +14,11 @@ import org.hibernate.annotations.Fetch;
 @Setter
 @FieldDefaults(level = AccessLevel.PROTECTED)
 @ToString
+@SuperBuilder
+@Builder
 @Entity
 @Table(name = "properties")
-public class CoreProperties extends CoreEntity implements CoreDto {
+public class CoreProperties extends CoreEntity  {
     @Column(name = "is_active")
     String isActive ;
     @Column(name = "property_code")

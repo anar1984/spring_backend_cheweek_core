@@ -1,7 +1,9 @@
 package com.cheweek.spring_backend_cheweek_core.service.info;
 
 
+import com.cheweek.spring_backend_cheweek_core.dto.CorePropertiesDTO;
 import com.cheweek.spring_backend_cheweek_core.entity.CoreProperties;
+import com.cheweek.spring_backend_cheweek_core.mapper.CorePropertiesMapper;
 import com.cheweek.spring_backend_cheweek_core.repository.CorePropertiesRepository;
 import com.cheweek.spring_backend_cheweek_core.service.ApiService;
 import com.cheweek.spring_backend_cheweek_core.utility.Carrier;
@@ -19,6 +21,7 @@ public class PropertiesGetService implements ApiService {
     private final CorePropertiesRepository properties;
     private final CarrierValidation validation;
     private final CorePagination pagination;
+    private  final  CorePropertiesMapper mapper;
 
     @Override
     public Carrier run(Carrier carrier) {
@@ -27,8 +30,10 @@ public class PropertiesGetService implements ApiService {
         carrier.setList("properties",getList(carrier.get("propertyCode"),carrier.get("page"),carrier.get("page")));
         return carrier;
     }
-    private List<CoreProperties> getList(String propertyCode,String page,String count ){
-        return properties.findAllByPropertyCodeAndStatusAndIsActive(propertyCode,"A","A",pagination.getPagination(page,count)).stream().toList();
+    private List<CorePropertiesDTO> getList(String propertyCode, String page, String count ){
+        return properties.findAllByPropertyCodeAndStatusAndIsActive(propertyCode,"A","A",pagination.getPagination(page,count)).stream().map(mapper::entityToDto).toList();
 
     }
+
+
 }
