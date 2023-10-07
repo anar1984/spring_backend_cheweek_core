@@ -23,11 +23,24 @@ public class CoreSpecification <T>{
     private Map<String,String> andSpecification = new HashMap<>();
     private Map<String,List<String>> inSpecification =new HashMap<>();
     private Map<String ,String > orSpecification= new HashMap<>();
+    private Map<String,String> andLike = new HashMap<>();
+    private Map<String,String> orLike = new HashMap<>();
     private Specification<T> specification = Specification.where(null);
+
 
     public void setAnd(String  key,String value){
         if(key!=null&&!key.isBlank() && value!=null&&!value.isBlank()){
             this.andSpecification.put(key,value);
+        }
+    }
+    public void setAndLike(String  key,String value){
+        if(key!=null&&!key.isBlank() && value!=null&&!value.isBlank()){
+            this.andLike.put(key,value);
+        }
+    }
+    public void setOrLike(String  key,String value){
+        if(key!=null&&!key.isBlank() && value!=null&&!value.isBlank()){
+            this.orLike.put(key,value);
         }
     }
     public void setIn(String  key,List<String> list){
@@ -40,6 +53,7 @@ public class CoreSpecification <T>{
             this.orSpecification.put(key,value);
         }
     }
+
 
 
 
@@ -80,12 +94,35 @@ public class CoreSpecification <T>{
         }
     }
 
+    private void setAndLike(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, Root root) {
+        if (!andLike.keySet().isEmpty()) {
+            for (String key : andLike.keySet()) {
+                if (andLike.get(key) != null) {
+                    predicates.add(criteriaBuilder.like(root.get(key), "%" + andLike.get(key) + "%"));
+                }
+            }
+        }
+    }
+
+    private void setOrLike(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, Root root) {
+        if (!orLike.keySet().isEmpty()) {
+            List<Predicate> orPredicates = new ArrayList<>();
+            for (String key : orLike.keySet()) {
+                if (orLike.get(key) != null) {
+                    orPredicates.add(criteriaBuilder.like(root.get(key), "%" + orLike.get(key) + "%"));
+                }
+            }
+            predicates.add(criteriaBuilder.or(orPredicates.toArray(new Predicate[0])));
+        }
+    }
     private Specification<T> getSpecificationBuilder() {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
             setAnd(predicates,criteriaBuilder,root);
             setIn(predicates,criteriaBuilder,root);
             setOr(predicates,criteriaBuilder,root);
+            setAndLike(predicates, criteriaBuilder, root);
+            setOrLike(predicates, criteriaBuilder, root);
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
