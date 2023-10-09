@@ -1,15 +1,14 @@
 package com.cheweek.spring_backend_cheweek_core.utility.coreentity;
+
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-
 
 import java.util.*;
 
@@ -26,7 +25,7 @@ public class CoreSpecification <T>{
     private Map<String,String> orLike;
     private Specification<T> specification;
     public CoreSpecification() {
-        this.andSpecification = new HashMap<>();;
+        this.andSpecification = new HashMap<>();
         this.inSpecification = new HashMap<>();
         this.orSpecification =  new HashMap<>();
         this.andLike = new HashMap<>();
@@ -37,35 +36,35 @@ public class CoreSpecification <T>{
     public void setAnd(String  key,String value){
         if(key!=null&&!key.isBlank() && value!=null&& !value.isEmpty()){
             this.andSpecification.put(key,value);
-        } else if (key!=null&&!key.isBlank() && (value == null || value.isEmpty())) {
+        } else if (key != null && !key.isBlank()) {
             this.andSpecification.remove(key);
         }
     }
     public void setAndLike(String  key,String value){
         if(key!=null&&!key.isBlank() && value!=null&&!value.isEmpty()){
             this.andLike.put(key,value);
-        }else if (key!=null&&!key.isBlank() && (value == null || value.isEmpty())) {
+        }else if (key != null && !key.isBlank()) {
             this.andLike.remove(key);
         }
     }
     public void setOrLike(String  key,String value){
         if(key!=null&&!key.isBlank() && value!=null&&!value.isEmpty()){
             this.orLike.put(key,value);
-        }else if (key!=null&&!key.isBlank() && (value == null || value.isEmpty())) {
+        }else if (key != null && !key.isBlank()) {
             this.orLike.remove(key);
         }
     }
     public void setIn(String  key,List<String> list){
         if(key!=null&&!key.isBlank() && list!=null&& !list.isEmpty()){
             this.inSpecification.put(key,list);
-        }else if (key!=null&&!key.isBlank() && (list == null || list.isEmpty())) {
+        }else if (key != null && !key.isBlank()) {
             this.orLike.remove(key);
         }
     }
     public void setOr(String  key,String value){
         if(key!=null&&!key.isBlank() && value!=null&&!value.isEmpty()){
             this.orSpecification.put(key,value);
-        }else if (key!=null&&!key.isBlank() && (value == null || value.isEmpty())) {
+        }else if (key != null && !key.isBlank()) {
             this.orLike.remove(key);
         }
     }
