@@ -16,7 +16,11 @@ public class TaskDeletedService {
     final SessionManager manager;
     final TaskEntityRepository taskRepository;
     public void deleteTask(String id){
-        TaskEntity task = taskRepository.findById(id).orElseThrow(()-> new TaskNotFoundException());// "Task not found"
+        TaskEntity task = taskRepository.findById(id).orElseThrow(()-> {
+            TaskNotFoundException taskNotFoundException = new TaskNotFoundException();
+            throw taskNotFoundException;
+
+        });// "Task not found"
         task.setStatus("D");
         taskRepository.save(task);
 

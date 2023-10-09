@@ -35,6 +35,10 @@ custom:
 #  hashKeyToken: spring_dev_token
 chw:
   hashKeyToken: spring_dev_token
+  companyList : spring_company_list
+  branchList : spring_branch_list
+  unitList : spring_unit_list
+  propertiesList: spring_properties_list
 
 
 service :

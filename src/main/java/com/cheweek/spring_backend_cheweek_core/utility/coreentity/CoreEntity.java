@@ -23,10 +23,7 @@ import java.io.Serializable;
 @MappedSuperclass
 public class CoreEntity implements Serializable {
     @Id
-    @GeneratedValue(generator ="prod-generator")
-    @GenericGenerator(name = "prod-generator",
-            strategy = "com.cheweek.spring_backend_cheweek_core.utility.sqlgenerator.IdGenerator")
-
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
     String id;
     @Column(name = "created_by",nullable = false)

@@ -17,7 +17,7 @@ import lombok.experimental.SuperBuilder;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "requests")
+@Table(name = "request")
 public class RequestEntity extends CoreEntity {
     @Column(name = "request_description",nullable = false)
     String requestDescription;

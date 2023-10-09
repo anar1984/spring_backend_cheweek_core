@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Builder
 @Entity
 @Table(name = "properties")
-public class CoreProperties extends CoreEntity  {
+public class PropertiesEntity extends CoreEntity  {
     @Column(name = "is_active")
     String isActive ;
     @Column(name = "property_code")
@@ -27,6 +27,10 @@ public class CoreProperties extends CoreEntity  {
     String propertyKey ;
     @Column(name = "property_value")
     String propertyValue ;
+    @Column(name = "property_value_ru")
+    String propertyValueRu ;
+    @Column(name = "property_value_en")
+    String propertyValueEn ;
     @Column(name = "order_no")
     String orderNo ;
 

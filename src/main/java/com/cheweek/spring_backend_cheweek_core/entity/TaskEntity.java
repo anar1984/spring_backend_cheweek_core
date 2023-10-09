@@ -17,7 +17,7 @@ import lombok.experimental.SuperBuilder;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "tasks")
+@Table(name = "task")
 public class TaskEntity extends CoreEntity {
 
     @Column(name = "fk_task_type_id",nullable = false)

@@ -5,11 +5,6 @@ import lombok.*;
 
 import java.util.Map;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
 public class TaskNotFoundException extends CoreException {
     final static String statusCode = "chw-core-601";
     @Override

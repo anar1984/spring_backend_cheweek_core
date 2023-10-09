@@ -17,7 +17,7 @@ import lombok.experimental.SuperBuilder;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "processes")
+@Table(name = "process")
 
 public class ProcessEntity extends CoreEntity {
     @Column(name = "process_key",nullable = false)

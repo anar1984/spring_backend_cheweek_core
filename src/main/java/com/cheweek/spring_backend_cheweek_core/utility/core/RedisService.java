@@ -1,5 +1,6 @@
 package com.cheweek.spring_backend_cheweek_core.utility.core;
 
+import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.redis.core.HashOperations;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
+@Log4j2
 public class RedisService {
 
     private final HashOperations<String, String, String> hashOperations;
@@ -21,6 +23,9 @@ public class RedisService {
         this.propertyService = propertyService;
     }
     public void addToHash(String hashKey, String field, String value) {
+        if(hashKey == null || field == null ){
+            return;
+        }
         hashOperations.put(hashKey, field, value);
     }
     public String getFromHash(String hashKey, String field) {
@@ -31,7 +36,7 @@ public class RedisService {
         if(key==null || key.trim().length()==0){
             return;
         }
-        final String hash= propertyService.getProperty(hashKey);
+        String hash= propertyService.getProperty(hashKey);
         JSONObject jsonObject = new JSONObject(info);
         addToHash(hash,key,jsonObject.toString());
     }

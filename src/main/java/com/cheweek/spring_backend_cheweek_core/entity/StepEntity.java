@@ -17,7 +17,7 @@ import lombok.experimental.SuperBuilder;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "steps")
+@Table(name = "step")
 
 public class StepEntity extends CoreEntity {
     @Column(name = "step_key",nullable = false)
