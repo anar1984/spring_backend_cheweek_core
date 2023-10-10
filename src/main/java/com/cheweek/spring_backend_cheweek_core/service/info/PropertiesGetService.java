@@ -3,7 +3,7 @@ package com.cheweek.spring_backend_cheweek_core.service.info;
 
 import com.cheweek.spring_backend_cheweek_core.dto.PropertiesDTO;
 import com.cheweek.spring_backend_cheweek_core.mapper.PropertiesMapper;
-import com.cheweek.spring_backend_cheweek_core.repository.PropertiesEntityRepository;
+import com.cheweek.spring_backend_cheweek_core.repository.info.PropertiesEntityRepository;
 import com.cheweek.spring_backend_cheweek_core.service.ApiService;
 import com.cheweek.spring_backend_cheweek_core.utility.Carrier;
 import com.cheweek.spring_backend_cheweek_core.utility.CarrierValidation;

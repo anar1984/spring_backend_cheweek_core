@@ -1,15 +1,14 @@
 package com.cheweek.spring_backend_cheweek_core.service.info;
 
 import com.cheweek.spring_backend_cheweek_core.dto.PropertiesDTO;
-import com.cheweek.spring_backend_cheweek_core.entity.PropertiesEntity;
+import com.cheweek.spring_backend_cheweek_core.entity.info.PropertiesEntity;
 import com.cheweek.spring_backend_cheweek_core.mapper.PropertiesMapper;
-import com.cheweek.spring_backend_cheweek_core.repository.PropertiesEntityRepository;
+import com.cheweek.spring_backend_cheweek_core.repository.info.PropertiesEntityRepository;
 import com.cheweek.spring_backend_cheweek_core.utility.core.PropertyService;
 import com.cheweek.spring_backend_cheweek_core.utility.core.RedisService;
 import com.cheweek.spring_backend_cheweek_core.utility.coreentity.CoreSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

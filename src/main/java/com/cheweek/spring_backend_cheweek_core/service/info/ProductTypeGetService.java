@@ -2,7 +2,7 @@ package com.cheweek.spring_backend_cheweek_core.service.info;
 
 import com.cheweek.spring_backend_cheweek_core.dto.ProductTypeDTO;
 import com.cheweek.spring_backend_cheweek_core.entity.ProductType;
-import com.cheweek.spring_backend_cheweek_core.repository.ProductTypeRepository;
+import com.cheweek.spring_backend_cheweek_core.repository.info.ProductTypeRepository;
 import com.cheweek.spring_backend_cheweek_core.service.ApiService;
 import com.cheweek.spring_backend_cheweek_core.utility.Carrier;
 import com.cheweek.spring_backend_cheweek_core.utility.coreentity.CorePagination;

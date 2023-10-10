@@ -1,8 +1,8 @@
 package com.cheweek.spring_backend_cheweek_core.service.impl;
 
 import com.cheweek.spring_backend_cheweek_core.mapper.TestDtoMapper;
-import com.cheweek.spring_backend_cheweek_core.repository.PropertiesEntityRepository;
-import com.cheweek.spring_backend_cheweek_core.repository.ProductTypeRepository;
+import com.cheweek.spring_backend_cheweek_core.repository.info.PropertiesEntityRepository;
+import com.cheweek.spring_backend_cheweek_core.repository.info.ProductTypeRepository;
 import com.cheweek.spring_backend_cheweek_core.service.ApiService;
 import com.cheweek.spring_backend_cheweek_core.utility.Carrier;
 import com.cheweek.spring_backend_cheweek_core.utility.CarrierValidation;

@@ -92,6 +92,15 @@ public class ExceptionHandlerCheweek extends ResponseEntityExceptionHandler {
             messageCode = ((CoreException) ex).getMessageCode();
             params = ((CoreException) ex).getParams();
             lang = ((CoreException) ex).getLang();
+        } else if (ex instanceof MethodArgumentNotValidException) {
+            status = HttpStatus.BAD_REQUEST;
+            message = ex.getMessage().substring(ex.getMessage().indexOf("[chw-")).substring(1,ex.getMessage().substring(ex.getMessage().indexOf("[chw-")).length()-3);
+            statusCode = ((MethodArgumentNotValidException) ex).getStatusCode().value();
+            appError = "Application error";
+            errorType = "Validation";
+            messageCode = ex.getMessage().substring(ex.getMessage().indexOf("[chw-")).substring(1,ex.getMessage().substring(ex.getMessage().indexOf("[chw-")).length()-3);
+            params = null;
+            lang = sessionManager.getLang();
         }
 
         return getResponseEntity(ex,
