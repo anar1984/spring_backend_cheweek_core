@@ -28,8 +28,8 @@ public class FlowEntity extends CoreEntity{
     String fkTaskId;
     @Column(name = "task_no",nullable = false)
     String taskNo;
-    @Column(name = "fk_task_type_id",nullable = false)
-    String fkTaskTypeId;
+    @Column(name = "fk_task_type_key",nullable = false)
+    String fkTaskTypeKey;
     @Column(name = "fk_action_id",nullable = false)
     String fkActionId;
     @Column(name = "fk_company_id",nullable = false)

@@ -9,4 +9,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface TaskTypeEntityRepository extends JpaRepository<TaskTypeEntity,String>, JpaSpecificationExecutor<TaskTypeEntity> {
+    boolean existsByTaskTypeKey(String fkRequestId);
 }

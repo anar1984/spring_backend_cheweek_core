@@ -3,6 +3,7 @@ package com.cheweek.spring_backend_cheweek_core.utility.exception.handler;
 import com.cheweek.spring_backend_cheweek_core.utility.SessionManager;
 import com.cheweek.spring_backend_cheweek_core.utility.exception.ClientServiceException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,6 +12,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +23,7 @@ import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
 @RequiredArgsConstructor
+@Log4j2
 public class ExceptionHandlerCheweek extends ResponseEntityExceptionHandler {
     private final SessionManager sessionManager;
 
@@ -93,12 +97,20 @@ public class ExceptionHandlerCheweek extends ResponseEntityExceptionHandler {
             params = ((CoreException) ex).getParams();
             lang = ((CoreException) ex).getLang();
         } else if (ex instanceof MethodArgumentNotValidException) {
+            String regex = "\\bchw-\\w+\\b";
+            String metin = ex.getMessage();
+
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(metin);
+            while (matcher.find()) {
+                messageCode  = matcher.group();
+            }
             status = HttpStatus.BAD_REQUEST;
-            message = ex.getMessage().substring(ex.getMessage().indexOf("[chw-")).substring(1,ex.getMessage().substring(ex.getMessage().indexOf("[chw-")).length()-3);
+            message = ex.getMessage();
+            log.info("messageCode : "+messageCode);
             statusCode = ((MethodArgumentNotValidException) ex).getStatusCode().value();
-            appError = "Application error";
+            appError = "Validation error";
             errorType = "Validation";
-            messageCode = ex.getMessage().substring(ex.getMessage().indexOf("[chw-")).substring(1,ex.getMessage().substring(ex.getMessage().indexOf("[chw-")).length()-3);
             params = null;
             lang = sessionManager.getLang();
         }

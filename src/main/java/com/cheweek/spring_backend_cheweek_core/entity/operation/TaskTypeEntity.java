@@ -21,13 +21,13 @@ import lombok.experimental.SuperBuilder;
 public class TaskTypeEntity extends CoreEntity {
 
     @Column(name = "task_type_key",nullable = false)
-    String processKey;
+    String taskTypeKey;
     @Column(name = "task_type_name",nullable = false)
-    String processName;
+    String taskTypeName;
     @Column(name = "task_type_name_ru",nullable = false)
-    String processNameRu;
+    String taskTypeNameRu;
     @Column(name = "task_type_name_en",nullable = false)
-    String processNameEn;
+    String taskTypeNameEn;
     @Column(name = "fk_process_key",nullable = false)
     String fkProcessKey;
     @Column(name = "fk_story_card_id",nullable = false)

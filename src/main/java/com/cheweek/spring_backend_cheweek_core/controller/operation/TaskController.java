@@ -1,20 +1,22 @@
 package com.cheweek.spring_backend_cheweek_core.controller.operation;
 
+import com.cheweek.spring_backend_cheweek_core.dto.core.GetObjectById;
+import com.cheweek.spring_backend_cheweek_core.dto.operation.TaskDto;
 import com.cheweek.spring_backend_cheweek_core.service.operation.TaskCreateService;
 import com.cheweek.spring_backend_cheweek_core.service.operation.TaskDeletedService;
 import com.cheweek.spring_backend_cheweek_core.service.operation.TaskListService;
 import com.cheweek.spring_backend_cheweek_core.service.operation.TaskUpdateService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/task")
+@RequestMapping("/operation/task")
+@Validated
 public class TaskController {
     private final TaskCreateService createService;
     private final TaskUpdateService updateService;
@@ -27,9 +29,8 @@ public class TaskController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createTask() {
-        createService.createTask();
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<?> createTask(@RequestBody @Valid TaskDto dto) {
+        return  ResponseEntity.ok(createService.createTask(dto));
     }
 
     @PostMapping("/update")
@@ -38,9 +39,9 @@ public class TaskController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PostMapping("/delete/{id}")
-    public ResponseEntity<?> deleteTask(@PathVariable String id) {
-        deleteService.deleteTask(id);
+    @PostMapping("/delete")
+    public ResponseEntity<?> deleteTask(@RequestBody @Valid GetObjectById id) {
+//        deleteService.deleteTask(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }
