@@ -1,21 +1,24 @@
-
 server:
-  port: 8083
+  port: 8082
   servlet:
-    context-path: /core
+    context-path: /spdev/erp
+jwt:
+  secret: cheweektttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+  validity: 300000
 spring:
   profiles:
-    active:  ${CHW_SERVER_TYPE}
+    active: ${CHW_SERVER_TYPE}
   datasource:
-        url: ${SPRING_CORE_URL}
-        driverClassName: ${SPRING_CORE_DRIVER}
-        username: ${SPRING_CORE_USERNAME}
-        password: ${SPRING_CORE_PASSWORD}
-        hikari:
-            maximum-pool-size: ${SPRING_CORE_MAX_IDLE}
-            minimum-idle: 1
+    url: ${CHW_PG_HOST}
+    driverClassName: org.postgresql.Driver
+    #spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+    username: ${CHW_PG_USER}
+    password: ${CHW_PG_USPASS}
+    hikari:
+      maximum-pool-size: 20
+
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     properties:
       hibernate:
         dialect:
@@ -26,20 +29,20 @@ spring:
     hibernate.ddl-auto: update
 
 
+
 custom:
   redis:
-    host: ${CHW_REDIS_URL}
-    port: ${CHW_REDIS_PORT}
-    password: ${CHW_REDIS_AUTH}
-#chw:
-#  hashKeyToken: spring_dev_token
+    host: dev2.sourcedagile.com
+    port: 6379
+    password: testM0r!al
+
+
 chw:
   hashKeyToken: spring_dev_token
   companyList : spring_company_list
   branchList : spring_branch_list
   unitList : spring_unit_list
   propertiesList: spring_properties_list
-
 
 service :
   erp:
@@ -51,6 +54,11 @@ service :
   gateway:
     baseurl: ${SPRING_GATEWAY_API}
     contextPath: ${SPRING_GATEWAY_CONTEXT}
+
+
+
+
+
 
 
 

@@ -1,6 +1,0 @@
-{
-       "entityName": "TestSpring",
-       "tableName": "test_spring",
-       "controlFields": "createdBy",
-       "controlCount": "2"
-}
