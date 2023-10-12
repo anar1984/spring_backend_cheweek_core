@@ -24,4 +24,5 @@ public class PriceListCirculationReadRequestDTO {
     private String circulationPriceAzn;
     private String fkPriceProductTypeId;
     private String fkPriceProductId;
+
 }

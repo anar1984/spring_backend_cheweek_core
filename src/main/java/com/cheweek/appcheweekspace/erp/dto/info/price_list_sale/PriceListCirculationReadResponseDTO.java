@@ -17,6 +17,7 @@ public class PriceListCirculationReadResponseDTO {
     private String circulationUnit;
     private String  mainPrice;
     private String  discountAmount;
+
     private String  discountPercent;
     private String circulationCurrency;
     private String circulationCourse;
